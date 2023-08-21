@@ -16,9 +16,7 @@ export default function FormText(props) {
     setText(event.target.value) 
   };
   const copyText = ()=>{
-    let text = document.getElementById("myBox");
-    text.select();
-    navigator.clipboard.writeText(text.value);
+    navigator.clipboard.writeText(text);
     props.showAlert("Copied to Clipboard",'success')
 
   };
@@ -60,7 +58,7 @@ export default function FormText(props) {
       </div>
       <div className="container my-3" style={{color: props.mode==='dark'? 'white':'black'}}>
         <h2>Your text summery</h2>
-        <p> {text.split(" ").length === 1 ? 0 : text.split(" ").length } words, {text.length} charachters</p>
+        <p> {text.split(/\s+/).filter((element)=>{return element.length!==0}).length} words, {text.length} charachters</p>
       </div>
       </>
       
